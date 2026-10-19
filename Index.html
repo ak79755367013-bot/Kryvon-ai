@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CW - Chemistry Wala</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#172033;
+}
+
+header{
+    background:linear-gradient(135deg,#071952,#088395);
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+header h1{
+    font-size:32px;
+}
+
+header p{
+    margin-top:7px;
+}
+
+nav{
+    background:#06142e;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+    padding:10px;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+nav button{
+    border:0;
+    background:#12366b;
+    color:white;
+    padding:10px 14px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+nav button:hover{
+    background:#00a8cc;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:20px;
+}
+
+.section{
+    display:none;
+}
+
+.active{
+    display:block;
+}
+
+.hero{
+    background:linear-gradient(135deg,#00a8cc,#071952);
+    color:white;
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.hero h2{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card button,
+.main-btn{
+    background:#087f8c;
+    color:white;
+    border:0;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.card button:hover,
+.main-btn:hover{
+    background:#05545e;
+}
+
+.subject{
+    border-left:6px solid #00a8cc;
+}
+
+.progress-box{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+.progress{
+    height:20px;
+    background:#ddd;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:10px;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+    background:#00a8cc;
+    transition:.5s;
+}
+
+.test-box{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-top:20px;
+}
+
+.option{
+    display:block;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    margin:8px 0;
+    cursor:pointer;
+}
+
+.option:hover{
+    background:#eefaff;
+}
+
+#timer{
+    font-size:22px;
+    font-weight:bold;
+    color:#d62828;
+    margin:10px 0;
+}
+
+.result{
+    margin-top:20px;
+    padding:20px;
+    border-radius:12px;
+    background:#e7f7ed;
+    display:none;
+}
+
+input,textarea,select{
+    width:100%;
+    padding:12px;
+    margin-top:8px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+footer{
+    margin-top:30px;
+    background:#06142e;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.dark{
+    background:#101318;
+    color:#eee;
+}
+
+.dark .card,
+.dark .test-box,
+.dark .progress-box{
+    background:#1b2028;
+    color:#eee;
+}
+
+.dark .option{
+    border-color:#555;
+}
+
+.pdf{
+    border-left:5px solid #ff9800;
+}
+
+.badge{
+    display:inline-block;
+    background:#ff9800;
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    margin:5px;
+}
+
+@media(max-width:600px){
+    header h1{
+        font-size:25px;
+    }
+
+    .hero h2{
+        font-size:23px;
+    }
+
+    nav button{
+        padding:8px 10px;
+        font-size:12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>⚗️ CW - CHEMISTRY WALA</h1>
+    <p>Class 9 → 10 → JEE → IIT Preparation</p>
+</header>
+
+<nav>
+    <button onclick="showSection('home')">🏠 Home</button>
+    <button onclick="showSection('maths')">🧮 Maths</button>
+    <button onclick="showSection('physics')">⚡ Physics</button>
+    <button onclick="showSection('chemistry')">⚗️ Chemistry</button>
+    <button onclick="showSection('jee')">🎯 JEE</button>
+    <button onclick="showSection('notes')">📚 Notes</button>
+    <button onclick="showSection('test')">📝 Test</button>
+    <button onclick="showSection('progress')">📊 Progress</button>
+    <button onclick="toggleDark()">🌙</button>
+</nav>
+
+<div class="container">
+
+<!-- HOME -->
+
+<section id="home" class="section active">
+
+<div class="hero">
+    <h2>Welcome to CW Coaching 🚀</h2>
+    <p>आपका अपना Free Digital Coaching Platform</p>
+    <button class="main-btn" onclick="showSection('test')">
+        📝 Test Start करें
+    </button>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>🧮 Mathematics</h3>
+<p>Class 9, Class 10 और JEE Foundation Mathematics</p>
+<button onclick="showSection('maths')">Open Maths</button>
+</div>
+
+<div class="card">
+<h3>⚡ Physics</h3>
+<p>Basic Physics से JEE Level तक तैयारी</p>
+<button onclick="showSection('physics')">Open Physics</button>
+</div>
+
+<div class="card">
+<h3>⚗️ Chemistry</h3>
+<p>Basic Chemistry से Advanced Chemistry</p>
+<button onclick="showSection('chemistry')">Open Chemistry</button>
+</div>
+
+<div class="card">
+<h3>🎯 JEE Preparation</h3>
+<p>JEE Main और JEE Advanced की तैयारी</p>
+<button onclick="showSection('jee')">Open JEE</button>
+</div>
+
+</div>
+
+<div class="progress-box">
+<h3>🔥 आपका Learning Mission</h3>
+<p>आज का लक्ष्य पूरा करने की कोशिश करें!</p>
+
+<div class="progress">
+<div class="progress-bar" id="homeProgress"></div>
+</div>
+
+<p id="progressText">Progress: 0%</p>
+</div>
+
+</section>
+
+
+<!-- MATHS -->
+
+<section id="maths" class="section">
+
+<div class="hero">
+<h2>🧮 Mathematics</h2>
+<p>Concept → Example → Practice → Test</p>
+</div>
+
+<div class="cards">
+
+<div class="card subject">
+<h3>Class 9 Maths</h3>
+<p>Number System</p>
+<p>Polynomials</p>
+<p>Coordinate Geometry</p>
+<p>Linear Equations</p>
+<p>Lines & Angles</p>
+<p>Triangles</p>
+<p>Quadrilaterals</p>
+<p>Circles</p>
+<button onclick="alert('Class 9 Maths Chapter Library जल्द यहाँ जोड़ी जा सकती है।')">
+Open Chapters
+</button>
+</div>
+
+<div class="card subject">
+<h3>Class 10 Maths</h3>
+<p>Real Numbers</p>
+<p>Polynomials</p>
+<p>Quadratic Equations</p>
+<p>Triangles</p>
+<p>Trigonometry</p>
+<p>Statistics</p>
+<p>Probability</p>
+<button onclick="alert('Class 10 Maths Library')">
+Open Chapters
+</button>
+</div>
+
+<div class="card subject">
+<h3>🚀 JEE Mathematics</h3>
+<p>Algebra</p>
+<p>Calculus</p>
+<p>Coordinate Geometry</p>
+<p>Trigonometry</p>
+<p>Vectors</p>
+<p>Probability</p>
+<button onclick="alert('JEE Mathematics Section')">
+Open JEE Maths
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PHYSICS -->
+
+<section id="physics" class="section">
+
+<div class="hero">
+<h2>⚡ Physics</h2>
+<p>Physics को Basic से Advanced तक सीखें</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Class 9 Physics</h3>
+<p>Motion</p>
+<p>Force and Laws of Motion</p>
+<p>Gravitation</p>
+<p>Work and Energy</p>
+<p>Sound</p>
+<button onclick="alert('Physics Chapter Library')">Open</button>
+</div>
+
+<div class="card">
+<h3>Class 10 Physics</h3>
+<p>Light</p>
+<p>Human Eye</p>
+<p>Electricity</p>
+<p>Magnetic Effects</p>
+<button onclick="alert('Class 10 Physics')">Open</button>
+</div>
+
+<div class="card">
+<h3>JEE Physics</h3>
+<p>Mechanics</p>
+<p>Thermodynamics</p>
+<p>Electrodynamics</p>
+<p>Optics</p>
+<p>Modern Physics</p>
+<button onclick="alert('JEE Physics')">Open</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CHEMISTRY -->
+
+<section id="chemistry" class="section">
+
+<div class="hero">
+<h2>⚗️ Chemistry Wala</h2>
+<p>Basic Chemistry → Class 9 → 10 → JEE</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>🧪 Physical Chemistry</h3>
+<p>Mole Concept</p>
+<p>Atomic Structure</p>
+<p>Thermodynamics</p>
+<p>Equilibrium</p>
+<p>Electrochemistry</p>
+<button onclick="alert('Physical Chemistry')">Open</button>
+</div>
+
+<div class="card">
+<h3>🧬 Organic Chemistry</h3>
+<p>Basic Organic Chemistry</p>
+<p>Hydrocarbons</p>
+<p>Functional Groups</p>
+<p>Reaction Mechanism</p>
+<button onclick="alert('Organic Chemistry')">Open</button>
+</div>
+
+<div class="card">
+<h3>⚛️ Inorganic Chemistry</h3>
+<p>Periodic Table</p>
+<p>Chemical Bonding</p>
+<p>Coordination Chemistry</p>
+<p>p-Block</p>
+<p>d-Block</p>
+<button onclick="alert('Inorganic Chemistry')">Open</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- JEE -->
+
+<section id="jee" class="section">
+
+<div class="hero">
+<h2>🎯 JEE / IIT Preparation</h2>
+<p>Build your foundation from Class 9</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>JEE Main</h3>
+<p>Physics + Chemistry + Mathematics</p>
+<p>Chapter Tests</p>
+<p>Mock Tests</p>
+<p>Previous Year Questions</p>
+<button onclick="showSection('test')">Start Test</button>
+</div>
+
+<div class="card">
+<h3>JEE Advanced</h3>
+<p>Advanced Problems</p>
+<p>Multi Correct Questions</p>
+<p>Numerical Answer</p>
+<p>Higher Level Practice</p>
+<button onclick="alert('Advanced Practice')">Practice</button>
+</div>
+
+<div class="card">
+<h3>📅 Study Plan</h3>
+<p>Concept Learning</p>
+<p>Daily Practice</p>
+<p>Weekly Test</p>
+<p>Monthly Revision</p>
+<button onclick="alert('Study Plan: रोज Concept + Questions + Revision + Test')">
+View Plan
+</button>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- NOTES -->
+
+<section id="notes" class="section">
+
+<div class="hero">
+<h2>📚 Notes & PDF Library</h2>
+<p>अपने PDF Notes यहाँ जोड़ें</p>
+</div>
+
+<div class="cards">
+
+<div class="card pdf">
+<h3>📘 Mathematics Notes</h3>
+<p>Class 9 / 10 / JEE Notes</p>
+<input type="file" accept=".pdf">
+</div>
+
+<div class="card pdf">
+<h3>⚡ Physics Notes</h3>
+<p>Chapter-wise PDF Notes</p>
+<input type="file" accept=".pdf">
+</div>
+
+<div class="card pdf">
+<h3>⚗️ Chemistry Notes</h3>
+<p>Physical + Organic + Inorganic</p>
+<input type="file" accept=".pdf">
+</div>
+
+<div class="card pdf">
+<h3>🎯 JEE Notes</h3>
+<p>JEE Main + Advanced Material</p>
+<input type="file" accept=".pdf">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TEST -->
+
+<section id="test" class="section">
+
+<div class="hero">
+<h2>📝 CW Online Test</h2>
+<p>Test दो और तुरंत अपना Score देखो</p>
+</div>
+
+<div class="test-box">
+
+<h3 id="questionNumber">Question 1</h3>
+
+<div id="timer">Time: 60 sec</div>
+
+<h2 id="question">Loading...</h2>
+
+<div id="options"></div>
+
+<button class="main-btn" onclick="nextQuestion()">
+Next Question →
+</button>
+
+<div class="result" id="result"></div>
+
+</div>
+
+</section>
+
+
+<!-- PROGRESS -->
+
+<section id="progress" class="section">
+
+<div class="hero">
+<h2>📊 My Progress</h2>
+<p>अपने Test और Learning Progress को देखें</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>🏆 Best Score</h3>
+<h2 id="bestScore">0%</h2>
+</div>
+
+<div class="card">
+<h3>📝 Tests Given</h3>
+<h2 id="testsGiven">0</h2>
+</div>
+
+<div class="card">
+<h3>🎯 Questions Solved</h3>
+<h2 id="questionsSolved">0</h2>
+</div>
+
+</div>
+
+<div class="progress-box">
+<h3>Learning Progress</h3>
+
+<div class="progress">
+<div class="progress-bar" id="mainProgress"></div>
+</div>
+
+<p id="mainProgressText">0%</p>
+
+</div>
+
+</section>
+
+</div>
+
+
+<footer>
+<h3>⚗️ CW - Chemistry Wala</h3>
+<p>Learn • Practice • Test • Improve 🚀</p>
+<p>Class 9 → IIT Journey</p>
+</footer>
+
+
+<script>
+
+/* -------------------------
+   PAGE NAVIGATION
+------------------------- */
+
+function showSection(id){
+
+    let sections=document.querySelectorAll(".section");
+
+    sections.forEach(function(section){
+        section.classList.remove("active");
+    });
+
+    document.getElementById(id).classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* -------------------------
+   DARK MODE
+------------------------- */
+
+function toggleDark(){
+
+    document.body.classList.toggle("dark");
+
+}
+
+
+/* -------------------------
+   TEST QUESTIONS
+------------------------- */
+
+const questions=[
+
+{
+question:"H₂O का रासायनिक नाम क्या है?",
+options:[
+"Hydrogen",
+"Water",
+"Oxygen",
+"Carbon Dioxide"
+],
+answer:1
+},
+
+{
+question:"यदि 5 × 4 = ?",
+options:[
+"10",
+"15",
+"20",
+"25"
+],
+answer:2
+},
+
+{
+question:"गति का SI unit क्या है?",
+options:[
+"Meter",
+"Second",
+"m/s",
+"Newton"
+],
+answer:2
+},
+
+{
+question:"परमाणु का केंद्र क्या कहलाता है?",
+options:[
+"Electron",
+"Nucleus",
+"Shell",
+"Proton"
+],
+answer:1
+},
+
+{
+question:"बल का SI unit क्या है?",
+options:[
+"Joule",
+"Watt",
+"Newton",
+"Pascal"
+],
+answer:2
+},
+
+{
+question:"CO₂ में Carbon के कितने atom हैं?",
+options:[
+"1",
+"2",
+"3",
+"4"
+],
+answer:0
+},
+
+{
+question:"यदि x + 5 = 10, तो x = ?",
+options:[
+"2",
+"5",
+"10",
+"15"
+],
+answer:1
+},
+
+{
+question:"सूर्य से पृथ्वी तक प्रकाश आने में लगभग कितना समय लगता है?",
+options:[
+"8 मिनट 20 सेकंड",
+"1 मिनट",
+"1 घंटा",
+"24 घंटे"
+],
+answer:0
+}
+
+];
+
+let currentQuestion=0;
+let score=0;
+let time=60;
+let timerInterval;
+
+
+/* -------------------------
+   LOAD QUESTION
+------------------------- */
+
+function loadQuestion(){
+
+    clearInterval(timerInterval);
+
+    time=60;
+
+    document.getElementById("timer").innerText=
+    "Time: "+time+" sec";
+
+    timerInterval=setInterval(function(){
+
+        time--;
+
+        document.getElementById("timer").innerText=
+        "Time: "+time+" sec";
+
+        if(time<=0){
+
+            clearInterval(timerInterval);
+
+            nextQuestion();
+
+        }
+
+    },1000);
+
+
+    let q=questions[currentQuestion];
+
+    document.getElementById("questionNumber").innerText=
+    "Question "+(currentQuestion+1)+" / "+questions.length;
+
+    document.getElementById("question").innerText=q.question;
+
+    let optionsHTML="";
+
+    q.options.forEach(function(option,index){
+
+        optionsHTML+=`
+        <label class="option">
+        <input type="radio" name="answer" value="${index}">
+        ${option}
+        </label>
+        `;
+
+    });
+
+    document.getElementById("options").innerHTML=optionsHTML;
+}
+
+
+/* -------------------------
+   NEXT QUESTION
+------------------------- */
+
+function nextQuestion(){
+
+    clearInterval(timerInterval);
+
+    let selected=document.querySelector(
+        'input[name="answer"]:checked'
+    );
+
+    if(selected){
+
+        if(Number(selected.value)===
+           questions[currentQuestion].answer){
+
+            score++;
+
+        }
+
+    }
+
+    currentQuestion++;
+
+    if(currentQuestion>=questions.length){
+
+        finishTest();
+
+    }else{
+
+        loadQuestion();
+
+    }
+
+}
+
+
+/* -------------------------
+   FINISH TEST
+------------------------- */
+
+function finishTest(){
+
+    clearInterval(timerInterval);
+
+    let percentage=Math.round(
+        (score/questions.length)*100
+    );
+
+    let result=document.getElementById("result");
+
+    result.style.display="block";
+
+    result.innerHTML=`
+        <h2>🎉 Test Complete!</h2>
+        <p>आपका Score:</p>
+        <h1>${score} / ${questions.length}</h1>
+        <h2>${percentage}%</h2>
+        <button class="main-btn"
+        onclick="restartTest()">
+        🔄 Test दोबारा दें
+        </button>
+    `;
+
+    saveProgress(percentage);
+
+}
+
+
+/* -------------------------
+   RESTART
+------------------------- */
+
+function restartTest(){
+
+    currentQuestion=0;
+    score=0;
+
+    document.getElementById("result").style.display="none";
+
+    loadQuestion();
+
+}
+
+
+/* -------------------------
+   SAVE PROGRESS
+------------------------- */
+
+function saveProgress(percentage){
+
+    let best=
+    Number(localStorage.getItem("cwBestScore")||0);
+
+    let tests=
+    Number(localStorage.getItem("cwTests")||0);
+
+    let solved=
+    Number(localStorage.getItem("cwSolved")||0);
+
+    tests++;
+
+    solved+=questions.length;
+
+    if(percentage>best){
+        best=percentage;
+    }
+
+    localStorage.setItem("cwBestScore",best);
+    localStorage.setItem("cwTests",tests);
+    localStorage.setItem("cwSolved",solved);
+
+    updateProgress();
+
+}
+
+
+/* -------------------------
+   UPDATE PROGRESS
+------------------------- */
+
+function updateProgress(){
+
+    let best=
+    Number(localStorage.getItem("cwBestScore")||0);
+
+    let tests=
+    Number(localStorage.getItem("cwTests")||0);
+
+    let solved=
+    Number(localStorage.getItem("cwSolved")||0);
+
+    document.getElementById("bestScore")
+    .innerText=best+"%";
+
+    document.getElementById("testsGiven")
+    .innerText=tests;
+
+    document.getElementById("questionsSolved")
+    .innerText=solved;
+
+    document.getElementById("mainProgress")
+    .style.width=best+"%";
+
+    document.getElementById("homeProgress")
+    .style.width=best+"%";
+
+    document.getElementById("mainProgressText")
+    .innerText="Progress: "+best+"%";
+
+    document.getElementById("progressText")
+    .innerText="Progress: "+best+"%";
+=
+}
+
+
+/* -------------------------
+   START WEBSITE
+------------------------- */
+
+updateProgress();
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
